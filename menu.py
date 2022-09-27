@@ -39,14 +39,14 @@ curses.wrapper(logo)
 def printMenu(screen, selected_row_idx):
     curses.init_pair(1, curses.COLOR_RED, curses.COLOR_BLACK)
     curses.init_pair(2, curses.COLOR_BLACK, curses.COLOR_RED)
-
+    
     
 
     screen.clear()
     for idx, row in enumerate(menu):
         x = larguraDaTela//2 - len(row)//2
         y = tamanhoDaTela//2  - len(menu)//2 + idx
-        selected_row_idx  = idx 
+        selected_row_idx  = current_row
 
         if idx == selected_row_idx:
             screen.attron(curses.color_pair(1))
