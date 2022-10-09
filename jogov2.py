@@ -15,9 +15,13 @@ def main(stdscr):
     box = [[3,18], [sh-3, sw-18]]
     textpad.rectangle(stdscr, box[0][0], box[0][1], box[1][0], box[1][1])
     
-    macacoALTURA = random.randint((sh//2) -4 ,sh//2 +4)
- 
-    macaco = [[macacoALTURA, 5],[macacoALTURA, sw-5]]
+
+    #o macaco ta sendo gerado mto perto do fim do prédio, seria bom depois a gente mudar o x dele
+
+
+    macacoALTURA = random.randint(sh//2-5, sh//2+6)
+    #macaco = [[sh//2+1, 30],[sh//2+1, sw-30]]
+    macaco = [[macacoALTURA, 24],[macacoALTURA, sw-24]]
     banana1 =  [[macaco[0][0] - 1,macaco[0][1]]]
     banana2 =  [[macaco[1][0] - 1, macaco[1][1]]]
     
@@ -29,33 +33,44 @@ def main(stdscr):
 
     for y,x in banana2:
         stdscr.addstr(y,x, 'O')
-    
+
     #predio
     #predio inicial 1
     #def predioINTERIOR(): 
         for y in range(macacoALTURA+ 3, sh-3):
-            for x in range(4, 15):
+            for x in range(19, 30):
                 stdscr.addstr(y,x, 'P') 
+            for x in range(30,32) :
+                stdscr.addstr(y,x, '|')
+            
     #def predioEXTERIOR():
         for y in range(macacoALTURA+ 1, macacoALTURA+ 2):
-            for x in range(4, 15):
+            for x in range(19, 30):
                 stdscr.addstr(y,x, '_')
+        for y in range(macacoALTURA+2, sh-3) :
+            for x in range(30,32) :
+                stdscr.addstr(y,x, '|')
+            
+
     #predio inicial 2
     #predioINTERIOR()
     for y in range(macacoALTURA + 3, sh-3 ):
-        for x in range( sw-15,sw-4):
+        for x in range( sw-31,sw-19):
             stdscr.addstr(y,x, 'P')
     #predioEXTERIOR
     for y in range(macacoALTURA+ 1, macacoALTURA+ 2):
-        for x in range( sw-15,sw-4):
+        for x in range( sw-30,sw-19):
           stdscr.addstr(y,x, '_')  
+    for y in range(macacoALTURA+2, sh-3) :
+            for x in range(sw-31,sw-30) :
+                stdscr.addstr(y,x, '|')
 
-    #gerador de altura de predio
-    #predio inicial do macaco 1
-    predioinicial1 = random.randint(macacoALTURA+ 3, sh-3)
-    #predio do macaco 2
-    predioinicial2 = random.randint(int(macaco[1][0])+3, sh-3)
-    
+    #predios medianos
+    alturapredio1 = random.randint((macacoALTURA) - 10 ,(macacoALTURA))
+
+    for y in range(alturapredio1, sh-3):
+        for x in range(31, sw-31):
+            stdscr.addstr(y,x, 'X')
     
     score = 0
     score_text = "Pontos: {}".format(score)
