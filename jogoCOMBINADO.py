@@ -79,8 +79,9 @@ def main_opcoes(stdscr):
             if current_row == len(opcoes)-2:
                 #Falta criar as variáveis
 
-                qualquernome = ['Fácil', 'Médio', 'Difícil', 'Retornar']
-
+                global opcao 
+                opcao = ['Fácil', 'Médio', 'Difícil', 'Retornar']
+                
 
 
 
@@ -88,9 +89,9 @@ def main_opcoes(stdscr):
                 def print_settings(stdscrsettings, selected_row_idx):
                     stdscrsettings.clear()
                     h, w = stdscrsettings.getmaxyx()
-                    for idx, row in enumerate(qualquernome):
+                    for idx, row in enumerate(opcao):
                         x = w//2 - len(row)//2
-                        y = h//2 - len(qualquernome)//2 + idx
+                        y = h//2 - len(opcao)//2 + idx
                         if idx == selected_row_idx:
                             stdscrsettings.attron(curses.color_pair(1))
                             stdscrsettings.addstr(y, x, row)
@@ -120,20 +121,21 @@ def main_opcoes(stdscr):
 
                         if key == curses.KEY_UP and current_row_settings > 0:
                             current_row_settings -= 1
-                        elif key == curses.KEY_DOWN and current_row_settings < len(qualquernome)-1:
+                        elif key == curses.KEY_DOWN and current_row_settings < len(opcao)-1:
                             current_row_settings += 1
-                        elif key == curses.KEY_ENTER or key in [10,13] and current_row_settings == len(qualquernome)-1:
+                        elif key == curses.KEY_ENTER or key in [10,13] and current_row_settings == len(opcao)-1:
                             break
-                        elif key == curses.KEY_ENTER or key in [10,13] and current_row_settings == len(qualquernome)-2:
-                            print_center_settings(stdscrsettings, "Você selecionou {}".format(qualquernome[current_row_settings]))
+                        elif key == curses.KEY_ENTER or key in [10,13] and current_row_settings == len(opcao)-2:
+                            print_center_settings(stdscrsettings, "Você selecionou {}".format(opcao[current_row_settings]))
                             stdscrsettings.getch()
-                        elif key == curses.KEY_ENTER or key in [10,13] and current_row_settings == len(qualquernome)-3:
-                            print_center_settings(stdscrsettings, "Você selecionou {}".format(qualquernome[current_row_settings]))
+                        elif key == curses.KEY_ENTER or key in [10,13] and current_row_settings == len(opcao)-3:
+                            print_center_settings(stdscrsettings, "Você selecionou {}".format(opcao[current_row_settings]))
                             stdscrsettings.getch()
-                        elif key == curses.KEY_ENTER or key in [10,13] and current_row_settings == len(qualquernome)-4:
-                            print_center_settings(stdscrsettings, "Você selecionou {}".format(qualquernome[current_row_settings]))
+                        elif key == curses.KEY_ENTER or key in [10,13] and current_row_settings == len(opcao)-4:
+                            print_center_settings(stdscrsettings, "Você selecionou {}".format(opcao[current_row_settings]))
                             stdscrsettings.getch()
-
+                        elif current_row_settings == None :
+                            current_row_settings == len(opcao) - 3
 
                         print_settings(stdscrsettings, current_row_settings)
                 curses.wrapper(main_settings)
@@ -301,45 +303,45 @@ def main(stdscr):
     for y in range(macacoALTURA+2, sh-3) :
             for x in range(sw-31,sw-30) :
                 stdscr.addstr(y,x, '|')
-
-    #predios medianos cada predio tem 9 espaços de largura
-    
-    alturapredio1 = random.randint((macacoALTURA) - 5 ,(macacoALTURA)+5)
-    alturapredio2 = random.randint((macacoALTURA) - 10 ,(macacoALTURA)+5)
-    alturapredio3 = random.randint((macacoALTURA) - 5 ,(macacoALTURA)+5)
-    #interior
-    #predio1
-    for y in range(alturapredio1, sh-3):
-        for x in range(31, sw-49):
-            stdscr.addstr(y,x, 'X')
-    #predio2
-    for y in range(alturapredio2, sh-3):
-        for x in range(31, sw-40):
-            stdscr.addstr(y,x, 'X')
-    #predio3    
-    for y in range(alturapredio3, sh-3):
-        for x in range(31, sw-31):
-            stdscr.addstr(y,x, 'X')
+    if opcao[1]:
+        #predios medianos cada predio tem 9 espaços de largura
         
-    #exterior dos predios do meio
-    #predio1
-    for y in range(alturapredio1-1, alturapredio1 -2 ):
-        for x in range(31, sw-49):
-            stdscr.addstr(y,x, '_')  
-    for x in range (sw-50, sw-49):
-            stdscr.addstr(y,x, '|')
-    #predio2
-    for y in range(alturapredio2-1, alturapredio2-2):
-        for x in range(31, sw-40):
-            stdscr.addstr(y,x, '_')
-    for x in range (sw-41, sw-40):
-            stdscr.addstr(y,x, '|')
-    #predio3
-    for y in range (alturapredio3-1, alturapredio3-2):
-        for x in range(31, sw-31):
-            stdscr.addstr(y,x, '_')
-    for x in range (sw-32, sw-33):
-            stdscr.addstr(y,x, '|')
+        alturapredio1 = random.randint((macacoALTURA) - 5 ,(macacoALTURA)+5)
+        alturapredio2 = random.randint((macacoALTURA) - 10 ,(macacoALTURA)+5)
+        alturapredio3 = random.randint((macacoALTURA) - 5 ,(macacoALTURA)+5)
+        #interior
+        #predio1
+        for y in range(alturapredio1, sh-3):
+            for x in range(31, sw-49):
+                stdscr.addstr(y,x, 'X')
+        #predio2
+        for y in range(alturapredio2, sh-3):
+            for x in range(31, sw-40):
+                stdscr.addstr(y,x, 'X')
+        #predio3    
+        for y in range(alturapredio3, sh-3):
+            for x in range(31, sw-31):
+                stdscr.addstr(y,x, 'X')
+            
+        #exterior dos predios do meio
+        #predio1
+        for y in range(alturapredio1-1, alturapredio1 -2 ):
+            for x in range(31, sw-49):
+                stdscr.addstr(y,x, '_')  
+        for x in range (sw-50, sw-49):
+                stdscr.addstr(y,x, '|')
+        #predio2
+        for y in range(alturapredio2-1, alturapredio2-2):
+            for x in range(31, sw-40):
+                stdscr.addstr(y,x, '_')
+        for x in range (sw-41, sw-40):
+                stdscr.addstr(y,x, '|')
+        #predio3
+        for y in range (alturapredio3-1, alturapredio3-2):
+            for x in range(31, sw-31):
+                stdscr.addstr(y,x, '_')
+        for x in range (sw-32, sw-33):
+                stdscr.addstr(y,x, '|')
     
    #colisao da banana com o predio :
     while banana1[0][0] == (y,x, 'X'):
